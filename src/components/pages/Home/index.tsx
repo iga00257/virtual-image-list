@@ -36,12 +36,10 @@ export default function Home({ breeds }: HomeProps) {
     setShowDropdown(false);
   };
 
+  const lowerCaseSearchTerm = searchTerm.toLowerCase();
   const filteredBreeds = breeds
-    .filter((breed) =>
-      breed.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    .filter((breed) => breed.name.toLowerCase().includes(lowerCaseSearchTerm))
     .sort((a, b) => {
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
       if (
         a.name.startsWith(lowerCaseSearchTerm) &&
         !b.name.startsWith(lowerCaseSearchTerm)
