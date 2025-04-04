@@ -18,7 +18,12 @@ const fetchImages = async (breedName: string) => {
       `https://dog.ceo/api/breed/${breedName}/images/random/10000`
     );
     const data = await response.json();
-    return data.message;
+    if (data.status === "success") {
+      return data.message;
+    } else {
+      console.error("Error fetching images:", data.message);
+      return [];
+    }
   } catch (error) {
     console.error("Error fetching images:", error);
   }
