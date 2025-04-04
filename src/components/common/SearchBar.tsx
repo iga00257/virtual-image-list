@@ -7,6 +7,7 @@ interface SearchBarProps {
   showDropdown: boolean;
   filteredBreeds: Array<{ name: string; subBreeds: string[] }>;
   onBreedSelect: (breedName: string) => void;
+  handleCloseDropdown: () => void;
 }
 
 export default function SearchBar({
@@ -16,6 +17,7 @@ export default function SearchBar({
   showDropdown,
   filteredBreeds,
   onBreedSelect,
+  handleCloseDropdown,
 }: SearchBarProps) {
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +28,7 @@ export default function SearchBar({
         searchRef.current &&
         !searchRef.current.contains(event.target as Node)
       ) {
-        onSearchClear();
+        handleCloseDropdown();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -41,7 +43,13 @@ export default function SearchBar({
           <input
             type="text"
             placeholder="搜尋狗狗品種..."
-            className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className={`
+              w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+              ${searchTerm ? "bg-white" : "bg-neutral-50"}
+              hover:bg-neutral-100
+              focus:bg-white
+              transition-colors duration-300
+            `}
             value={searchTerm}
             onChange={onSearchChange}
           />
@@ -84,7 +92,7 @@ export default function SearchBar({
         </div>
       </div>
       {showDropdown && searchTerm && (
-        <div className="absolute z-10 w-full  mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full mt-2 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
           {filteredBreeds.map((breed) => (
             <button
               key={breed.name}

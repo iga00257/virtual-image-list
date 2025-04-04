@@ -18,7 +18,7 @@ export default function Home({ breeds }: HomeProps) {
   const router = useRouter();
 
   const handleBreedSelect = (breed: string) => {
-    setShowDropdown(false);
+    handleCloseDropdown();
     router.push(`${breed}/images`);
   };
 
@@ -29,6 +29,10 @@ export default function Home({ breeds }: HomeProps) {
 
   const handleSearchClear = () => {
     setSearchTerm("");
+    handleCloseDropdown();
+  };
+
+  const handleCloseDropdown = () => {
     setShowDropdown(false);
   };
 
@@ -67,6 +71,7 @@ export default function Home({ breeds }: HomeProps) {
             showDropdown={showDropdown}
             filteredBreeds={filteredBreeds}
             onBreedSelect={handleBreedSelect}
+            handleCloseDropdown={handleCloseDropdown}
           />
           <BreedList
             breeds={filteredBreeds}
