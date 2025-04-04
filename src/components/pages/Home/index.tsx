@@ -55,35 +55,30 @@ export default function Home({ breeds }: HomeProps) {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <>
-        <div className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <h1 className="sm:block text-xl font-semibold text-gray-900">
-                  可愛狗狗圖庫
-                </h1>
-              </div>
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <h1 className="sm:block text-xl font-semibold text-gray-900">
+                可愛狗狗圖庫
+              </h1>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <SearchBar
-            searchTerm={searchTerm}
-            onSearchChange={handleSearchChange}
-            onSearchClear={handleSearchClear}
-            showDropdown={showDropdown}
-            filteredBreeds={filteredBreeds}
-            onBreedSelect={handleBreedSelect}
-            handleCloseDropdown={handleCloseDropdown}
-          />
-          <BreedList
-            breeds={filteredBreeds}
-            onBreedSelect={handleBreedSelect}
-          />
-        </div>
-      </>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+          onSearchClear={handleSearchClear}
+          showDropdown={showDropdown}
+          filteredBreeds={filteredBreeds}
+          onBreedSelect={handleBreedSelect}
+          handleCloseDropdown={handleCloseDropdown}
+        />
+        <BreedList breeds={filteredBreeds} onBreedSelect={handleBreedSelect} />
+      </div>
     </main>
   );
 }
