@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -19,6 +19,21 @@ export default function SearchBar({
 }: SearchBarProps) {
   const searchRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    // 如果用戶點擊範圍在搜索框外，則關閉下拉菜單
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        onSearchClear();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div className="relative mb-4" ref={searchRef}>
       <div className="relative">
@@ -69,7 +84,7 @@ export default function SearchBar({
         </div>
       </div>
       {showDropdown && searchTerm && (
-        <div className="absolute z-10 w-full max-w-md mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full  mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
           {filteredBreeds.map((breed) => (
             <button
               key={breed.name}
