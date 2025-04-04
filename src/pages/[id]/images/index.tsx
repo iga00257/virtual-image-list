@@ -15,7 +15,7 @@ const fetchImages = async (breedName: string) => {
 
   try {
     const response = await fetch(
-      `https://dog.ceo/api/breed/${breedName}/images/random/50`
+      `https://dog.ceo/api/breed/${breedName}/images/random/10000`
     );
     const data = await response.json();
     return data.message;
