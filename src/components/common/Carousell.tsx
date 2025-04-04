@@ -47,7 +47,7 @@ const Carousel = ({
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((image, index) => (
-              <div key={index} className=" w-full h-full flex-shrink-0">
+              <div key={index} className=" w-full h-full flex-shrink-0 px-1">
                 <div className="relative w-full h-full">
                   <Image
                     src={image}
