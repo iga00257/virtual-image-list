@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import VirtualImageGrid from "@/components/common/VirtualImageGrid";
-import ImageCarousel from "@/components/common/ImageCarousel";
+import Carousel from "@/components/common/Carousell";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -18,8 +18,6 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
   // 獲取選定品種的圖片
 
   useEffect(() => {
-    console.log("breedOnQuery", breedOnQuery);
-    console.log("router", router);
     setSelectedBreed(breedOnQuery as string);
   }, [breedOnQuery]);
 
@@ -44,7 +42,7 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
     <main className="min-h-screen bg-gray-50">
       {selectedBreed && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="mb-6">
+          <div className="mb-5">
             <Link
               href={"/"}
               className="inline-flex items-center text-gray-600 hover:text-gray-900"
@@ -75,10 +73,10 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
       )}
 
       {showCarousel && (
-        <ImageCarousel
+        <Carousel
           images={images}
-          currentIndex={currentImageIndex}
           breedName={selectedBreed || ""}
+          currentIndex={currentImageIndex}
           onClose={handleCloseCarousel}
           onPrevious={handlePreviousImage}
           onNext={handleNextImage}
