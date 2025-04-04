@@ -125,7 +125,7 @@ export default function VirtualImageGrid({
   return (
     <div
       ref={containerRef}
-      className="h-[calc(100vh-74px)] overflow-auto"
+      className="h-[calc(100vh-74px)] overflow-auto scrollbar-hide"
       style={{
         position: "relative",
         padding: `0 ${gap / 2}px 20px`,
