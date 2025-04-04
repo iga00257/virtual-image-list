@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import handleImageBlur from "@/methods/handleImageBlur";
 
 interface VirtualImageGridProps {
   images: string[];
@@ -164,11 +165,8 @@ export default function VirtualImageGrid({
                     fill
                     className="object-cover rounded-lg"
                     sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 20vw"
-                    // 非 overscan 的圖片要優先渲染
-                    priority={
-                      actualIndex < visibleRange.start ||
-                      actualIndex > visibleRange.end
-                    }
+                    placeholder="blur"
+                    blurDataURL={handleImageBlur()}
                   />
                 </div>
               </div>
