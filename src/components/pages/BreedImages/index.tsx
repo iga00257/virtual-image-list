@@ -63,7 +63,7 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              <span className="hidden sm:inline">返回品種列表</span>
+              <span className="sm:inline">返回品種列表</span>
             </Link>
           </div>
           <VirtualImageGrid

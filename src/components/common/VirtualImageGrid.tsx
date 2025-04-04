@@ -115,10 +115,10 @@ export default function VirtualImageGrid({
   return (
     <div
       ref={containerRef}
-      className="h-[calc(100vh-200px)] overflow-auto"
+      className="h-[calc(100vh-150px)] overflow-auto"
       style={{
         position: "relative",
-        padding: `0 ${gap / 2}px`,
+        padding: `0 ${gap / 2}px 20px`,
       }}
     >
       <div
