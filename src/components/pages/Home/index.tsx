@@ -23,7 +23,7 @@ export default function Home({ breeds }: HomeProps) {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value.toLocaleLowerCase());
     setShowDropdown(true);
   };
 
@@ -36,7 +36,13 @@ export default function Home({ breeds }: HomeProps) {
     .filter((breed) =>
       breed.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => {
+      if (a.name.startsWith(searchTerm) && !b.name.startsWith(searchTerm))
+        return -1;
+      if (!a.name.startsWith(searchTerm) && b.name.startsWith(searchTerm))
+        return 1;
+      return a.name.localeCompare(b.name);
+    });
 
   return (
     <main className="min-h-screen bg-gray-50">
