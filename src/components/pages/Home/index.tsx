@@ -55,17 +55,13 @@ export default function Home({ breeds }: HomeProps) {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <h1 className="sm:block text-xl font-semibold text-gray-900">
-                可愛狗狗圖庫
-              </h1>
-            </div>
-          </div>
+      <header className="bg-white shadow-sm">
+        <div className="container py-4 px-4">
+          <h1 className="text-xl font-semibold text-text-primary">
+            可愛狗狗圖庫
+          </h1>
         </div>
-      </div>
+      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <SearchBar
