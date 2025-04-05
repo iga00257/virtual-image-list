@@ -1,69 +1,61 @@
-import { useState } from "react";
-import SearchBar from "@/components/common/SearchBar";
-import BreedList from "@/components/common/BreedList";
-import { useRouter } from "next/router";
+import { useState } from 'react'
+import SearchBar from '@/components/common/SearchBar'
+import BreedList from '@/components/common/BreedList'
+import ShibaIcon from '@/components/common/ShibaIcon'
+import { useRouter } from 'next/router'
 
 interface Breed {
-  name: string;
-  subBreeds: string[];
+  name: string
+  subBreeds: string[]
 }
 
 interface HomeProps {
-  breeds: Breed[];
+  breeds: Breed[]
 }
 
 export default function Home({ breeds }: HomeProps) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showDropdown, setShowDropdown] = useState(false)
+  const router = useRouter()
 
   const handleBreedSelect = (breed: string) => {
-    handleCloseDropdown();
-    router.push(`${breed}/images`);
-  };
+    handleCloseDropdown()
+    router.push(`${breed}/images`)
+  }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setShowDropdown(true);
-  };
+    setSearchTerm(e.target.value)
+    setShowDropdown(true)
+  }
 
   const handleSearchClear = () => {
-    setSearchTerm("");
-    handleCloseDropdown();
-  };
+    setSearchTerm('')
+    handleCloseDropdown()
+  }
 
   const handleCloseDropdown = () => {
-    setShowDropdown(false);
-  };
+    setShowDropdown(false)
+  }
 
-  const lowerCaseSearchTerm = searchTerm.toLowerCase();
+  const lowerCaseSearchTerm = searchTerm.toLowerCase()
   const filteredBreeds = breeds
     .filter((breed) => breed.name.toLowerCase().includes(lowerCaseSearchTerm))
     .sort((a, b) => {
-      if (
-        a.name.startsWith(lowerCaseSearchTerm) &&
-        !b.name.startsWith(lowerCaseSearchTerm)
-      )
-        return -1;
-      if (
-        !a.name.startsWith(lowerCaseSearchTerm) &&
-        b.name.startsWith(lowerCaseSearchTerm)
-      )
-        return 1;
-      return a.name.localeCompare(b.name);
-    });
+      if (a.name.startsWith(lowerCaseSearchTerm) && !b.name.startsWith(lowerCaseSearchTerm)) return -1
+      if (!a.name.startsWith(lowerCaseSearchTerm) && b.name.startsWith(lowerCaseSearchTerm)) return 1
+      return a.name.localeCompare(b.name)
+    })
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
-        <div className="container py-4 px-4">
-          <h1 className="text-xl font-semibold text-text-primary">
-            可愛狗狗圖庫
-          </h1>
+    <main className='min-h-screen bg-gray-50'>
+      <header className='bg-white shadow-sm'>
+        <div className='container py-4 px-4 flex items-center'>
+          <h1 className='text-xl font-semibold text-text-primary mr-2'>可愛狗狗圖庫</h1>
+          <ShibaIcon />
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
         <SearchBar
           searchTerm={searchTerm}
           onSearchChange={handleSearchChange}
@@ -76,5 +68,5 @@ export default function Home({ breeds }: HomeProps) {
         <BreedList breeds={filteredBreeds} onBreedSelect={handleBreedSelect} />
       </div>
     </main>
-  );
+  )
 }
