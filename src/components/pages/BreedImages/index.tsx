@@ -14,6 +14,15 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
   const router = useRouter();
   const selectedBreed = router.query.id as string;
 
+  // 如果頁面正在切換中，顯示 loading
+  if (router.isFallback) {
+    return (
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <div className="animate-pulse text-neutral-600">載入中...</div>
+      </div>
+    );
+  }
+
   const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
     setShowCarousel(true);
