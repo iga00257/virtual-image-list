@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VirtualImageGrid from "@/components/common/VirtualImageGrid";
 import Carousel from "@/components/common/Carousell";
 import { useRouter } from "next/router";
@@ -9,17 +9,10 @@ interface BreedImagesProps {
 }
 
 export default function Home({ imagesFromServer: images }: BreedImagesProps) {
-  const [selectedBreed, setSelectedBreed] = useState<string | null>(null);
   const [showCarousel, setShowCarousel] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const router = useRouter();
-  const { id: breedOnQuery } = router.query;
-
-  // 獲取選定品種的圖片
-
-  useEffect(() => {
-    setSelectedBreed(breedOnQuery as string);
-  }, [breedOnQuery]);
+  const selectedBreed = router.query.id as string;
 
   const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
@@ -42,14 +35,16 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
     <main className="min-h-screen bg-gray-50">
       {selectedBreed && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="mb-5">
+          <div className="flex items-center mb-6">
             <Link
-              href={"/"}
-              className="inline-flex items-center text-gray-600 hover:text-gray-900"
+              href="/"
+              className=" text-neutral-600 hover:text-neutral-900 
+                         hover:bg-neutral-100 rounded-full transition-colors flex-shrink-0"
               prefetch={true}
+              aria-label="返回品種列表"
             >
               <svg
-                className="w-5 h-5 mr-2"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -61,8 +56,11 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              <span className="sm:inline">返回品種列表</span>
             </Link>
+            <h1 className="flex-1 text-xl font-semibold capitalize text-text-primary truncate text-center">
+              {selectedBreed}
+            </h1>
+            <div className="w-5" /> {/* 平衡左側按鈕的空間 */}
           </div>
           <VirtualImageGrid
             images={images}

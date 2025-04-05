@@ -15,9 +15,32 @@ export default function BreedList({ breeds, onBreedSelect }: BreedListProps) {
         <button
           key={breed.name}
           onClick={() => onBreedSelect(breed.name)}
-          className="p-4 border rounded-lg hover:bg-gray-100 transition-colors text-left"
+          className="group p-4 bg-white border border-neutral-200 rounded-lg 
+                     hover:border-primary-500/30 hover:shadow-lg hover:-translate-y-2
+                     transition-all duration-300 text-left cursor-pointer"
         >
-          <h2 className="text-xl font-semibold capitalize">{breed.name}</h2>
+          <h2
+            className="text-lg font-semibold capitalize text-text-primary 
+                         group-hover:text-primary-600 transition-colors"
+          >
+            {breed.name}
+          </h2>
+          <div className="mt-1.5 flex items-center text-text-secondary text-sm">
+            <svg
+              className="w-4 h-4 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
+            查看圖片
+          </div>
         </button>
       ))}
     </div>

@@ -44,7 +44,7 @@ export default function SearchBar({
             type="text"
             placeholder="搜尋狗狗品種..."
             className={`
-              w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+              w-full pl-10 pr-10 py-2 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:border-transparent
               ${searchTerm ? "bg-white" : "bg-neutral-50"}
               hover:bg-neutral-100
               focus:bg-white
