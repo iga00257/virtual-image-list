@@ -65,7 +65,7 @@ export default function Home({ breeds }: HomeProps) {
           onBreedSelect={handleBreedSelect}
           handleCloseDropdown={handleCloseDropdown}
         />
-        <BreedList breeds={filteredBreeds} onBreedSelect={handleBreedSelect} />
+        <BreedList breeds={filteredBreeds} onBreedSelect={handleBreedSelect} searchTerm={searchTerm} />
       </div>
     </main>
   )

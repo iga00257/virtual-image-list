@@ -75,23 +75,30 @@ export default function SearchBar({
             )}
           </div>
         </div>
-        {showDropdown && searchTerm && filteredBreeds.length > 0 && (
+        {showDropdown && searchTerm && (
           <div className='absolute w-full mt-2 bg-white rounded-lg shadow-lg max-h-[60vh] overflow-y-auto'>
             <div className='bg-white rounded-lg w-full h-full'>
-              {filteredBreeds.map((breed) => (
-                <button
-                  key={breed.name}
-                  onClick={() => onBreedSelect(breed.name)}
-                  className='w-full px-4 py-2 text-left 
-                    border border-transparent
-                    hover:bg-gray-100 
-                    transition-all duration-300
-                    first:rounded-t-lg last:rounded-b-lg  cursor-pointer'
-                >
-                  <div className='font-medium capitalize'>{breed.name}</div>
-                  {breed.subBreeds.length > 0 && <div className='text-sm text-gray-500'>子品種: {breed.subBreeds.length}</div>}
-                </button>
-              ))}
+              {filteredBreeds.length > 0 ? (
+                filteredBreeds.map((breed) => (
+                  <button
+                    key={breed.name}
+                    onClick={() => onBreedSelect(breed.name)}
+                    className='w-full px-4 py-2 text-left 
+                      border border-transparent
+                      hover:bg-gray-100 
+                      hover:border-neutral-400
+                      transition-all duration-300
+                      first:rounded-t-lg last:rounded-b-lg'
+                  >
+                    <div className='font-medium capitalize'>{breed.name}</div>
+                    {breed.subBreeds.length > 0 && <div className='text-sm text-gray-500'>子品種: {breed.subBreeds.length}</div>}
+                  </button>
+                ))
+              ) : (
+                <div className='px-4 py-6 text-center text-gray-500'>
+                  <p>找不到符合「{searchTerm}」的品種</p>
+                </div>
+              )}
             </div>
           </div>
         )}
