@@ -132,7 +132,7 @@ export default function VirtualImageGrid({ images, breedName, onImageClick }: Vi
           return (
             <div
               key={image}
-              className='absolute cursor-pointer'
+              className='absolute cursor-pointer '
               onClick={() => onImageClick(actualIndex)}
               style={{
                 top: `${top}px`,
@@ -142,16 +142,18 @@ export default function VirtualImageGrid({ images, breedName, onImageClick }: Vi
                 margin: `0 ${gap / 2}px`,
               }}
             >
-              <div className='relative w-full h-full'>
-                <Image
-                  src={image}
-                  alt={`${breedName} dog ${actualIndex + 1}`}
-                  fill
-                  className='object-cover rounded-lg'
-                  sizes='(max-width: 640px) 33vw, (max-width: 768px) 25vw, 20vw'
-                  placeholder='blur'
-                  blurDataURL={handleImageBlur()}
-                />
+              <div className='relative w-full h-full bg-white rounded-md p-[6px]'>
+                <div className='relative w-full h-full'>
+                  <Image
+                    src={image}
+                    alt={`${breedName} dog ${actualIndex + 1}`}
+                    fill
+                    className='object-cover rounded-md'
+                    sizes='(max-width: 640px) 33vw, (max-width: 768px) 25vw, 20vw'
+                    placeholder='blur'
+                    blurDataURL={handleImageBlur()}
+                  />
+                </div>
               </div>
             </div>
           )

@@ -1,3 +1,5 @@
+import BreedItemIcon from './BreedItemIcon'
+
 interface Breed {
   name: string
   subBreeds: string[]
@@ -26,23 +28,30 @@ export default function BreedList({ breeds, onBreedSelect, searchTerm }: BreedLi
           <button
             key={breed.name}
             onClick={() => onBreedSelect(breed.name)}
-            className='group p-4 bg-white border border-neutral-200 rounded-lg 
+            className='group p-4  border border-neutral-200 rounded-lg 
                        hover:border-primary-500/30 hover:shadow-lg hover:-translate-y-2
-                       transition-all duration-300 text-left cursor-pointer'
+                       transition-all duration-300 text-left cursor-pointer bg-[#FDFDFC] shadow-sm'
           >
-            <h2
-              className='text-lg font-semibold capitalize text-text-primary 
-                           group-hover:text-primary-600 transition-colors'
+            <div
+              className='text-lg font-semibold capitalize text-primary 
+                           group-hover:text-primary-600 transition-colors flex items-center'
             >
-              {breed.name}
-            </h2>
-            <div className='mt-1.5 flex items-center text-text-secondary text-sm'>
+              <div className='mr-2'>
+                <BreedItemIcon />
+              </div>
+              <span
+                className='text-lg font-semibold capitalize text-primary 
+                           group-hover:text-primary-600 transition-colors'
+              >
+                {breed.name}
+              </span>
+            </div>
+            <div className='mt-1.5 flex items-center text-secondary text-sm'>
               <svg className='w-4 h-4 mr-1.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 7l5 5m0 0l-5 5m5-5H6' />
               </svg>
               查看圖片
             </div>
-            {breed.subBreeds.length > 0 && <div className='text-sm text-gray-500'>子品種: {breed.subBreeds.length}</div>}
           </button>
         ))}
       </div>

@@ -32,13 +32,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel='icon' type='image/x-icon' href='/favicon.ico' />
         <link rel='shortcut icon' href='/favicon.ico' />
       </Head>
-      {isLoading ? (
-        <div className='min-h-screen flex items-center justify-center'>
-          <div className='animate-pulse text-neutral-600'>載入中...</div>
-        </div>
-      ) : (
-        <Component {...pageProps} />
-      )}
+      <div className='min-h-screen bg-gradient-to-br from-[#E7F1E8] from-10% via-[#D1E4DA] via-50% to-[#B6D7C9] to-90% bg-fixed'>
+        {isLoading ? (
+          <div className='min-h-screen flex items-center justify-center'>
+            <div className='animate-pulse text-neutral-600'>載入中...</div>
+          </div>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </div>
     </>
   )
 }

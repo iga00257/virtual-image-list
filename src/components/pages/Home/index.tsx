@@ -47,8 +47,8 @@ export default function Home({ breeds }: HomeProps) {
     })
 
   return (
-    <main className='min-h-screen bg-gray-50'>
-      <header className='bg-white shadow-sm'>
+    <main className='min-h-screen '>
+      <header className=' shadow-sm bg-[#B2CCC5] text-white p-4 text-2xl font-bold tracking-wide '>
         <div className='container py-4 px-4 flex items-center'>
           <h1 className='text-xl font-semibold text-text-primary mr-2'>可愛狗狗圖庫</h1>
           <ShibaIcon />
