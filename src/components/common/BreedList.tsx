@@ -15,7 +15,7 @@ export default function BreedList({ breeds, onBreedSelect, searchTerm }: BreedLi
   return (
     <div className='space-y-4'>
       {searchTerm && (
-        <div className='flex items-center justify-between px-2 py-3 bg-neutral-100 rounded-lg'>
+        <div className='flex items-center justify-between px-2 py-3 rounded-lg bg-[#FFFFFF]'>
           <div className='text-sm text-neutral-600'>
             <span className='font-medium'>「{searchTerm}」</span>的搜尋結果：
             <span className='ml-2 font-medium'>{breeds.length}</span> 個品種

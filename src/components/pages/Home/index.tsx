@@ -14,13 +14,19 @@ interface HomeProps {
 }
 
 export default function Home({ breeds }: HomeProps) {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [showDropdown, setShowDropdown] = useState(false)
   const router = useRouter()
+  const { keyword } = router.query
+
+  const [searchTerm, setSearchTerm] = useState((keyword as string) || '')
+  const [showDropdown, setShowDropdown] = useState(false)
 
   const handleBreedSelect = (breed: string) => {
     handleCloseDropdown()
-    router.push(`${breed}/images`)
+    const queryParams = new URLSearchParams()
+    if (searchTerm) {
+      queryParams.set('keyword', searchTerm)
+    }
+    router.push(`${breed}/images?${queryParams.toString()}`)
   }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +51,6 @@ export default function Home({ breeds }: HomeProps) {
       if (!a.name.startsWith(lowerCaseSearchTerm) && b.name.startsWith(lowerCaseSearchTerm)) return 1
       return a.name.localeCompare(b.name)
     })
-
   return (
     <main className='min-h-screen '>
       <header className=' shadow-sm bg-[#B2CCC5] text-white p-4 text-2xl font-bold tracking-wide '>

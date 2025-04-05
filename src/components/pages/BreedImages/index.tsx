@@ -39,6 +39,7 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
   const handleNextImage = () => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   }
+  const { keyword } = router.query
 
   return (
     <main className='min-h-screen'>
@@ -46,7 +47,7 @@ export default function Home({ imagesFromServer: images }: BreedImagesProps) {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
           <div className='flex items-center mb-6 '>
             <Link
-              href='/'
+              href={`/${keyword ? `?keyword=${keyword}` : ''}`}
               className=' text-neutral-600 hover:text-neutral-900 
                          hover:bg-neutral-100 rounded-full transition-colors flex-shrink-0'
               prefetch={true}
