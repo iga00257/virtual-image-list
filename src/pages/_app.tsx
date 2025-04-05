@@ -32,12 +32,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel='icon' type='image/x-icon' href='/favicon.ico' />
         <link rel='shortcut icon' href='/favicon.ico' />
       </Head>
-      {isLoading && (
-        <div className='min-h-screen bg-neutral-50 flex items-center justify-center'>
+      {isLoading ? (
+        <div className='min-h-screen flex items-center justify-center'>
           <div className='animate-pulse text-neutral-600'>載入中...</div>
         </div>
+      ) : (
+        <Component {...pageProps} />
       )}
-      {!isLoading && <Component {...pageProps} />}
     </>
   )
 }
